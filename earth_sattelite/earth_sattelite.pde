@@ -24,9 +24,7 @@ float sat1Lat;
 
 float sat2Lon;
 float sat2Lat;
-
 Satellite sat;
-
 
 
 void setup() {
@@ -38,7 +36,7 @@ void setup() {
 
   noStroke();
   globe = createShape(SPHERE, r);
-  //globe.setTexture(earth);
+  globe.setTexture(earth);
   camera(0, 0, -500, 0, 0,0,0,1,0);
   directionalLight(180,180,180,-5,-2,-1);
   
@@ -51,7 +49,6 @@ void draw() {
   //translate(width*0.5, height*0.5);
 
   background(51);
-  //angle += 0.05;
 
   fill(200);
   noStroke();
