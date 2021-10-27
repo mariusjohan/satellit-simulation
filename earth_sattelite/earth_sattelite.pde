@@ -12,25 +12,9 @@ float r = 200;
 PImage earth;
 PShape globe;
 
-JSONObject j;
-JSONArray positionsJson;
- 
-
-JSONObject pos1;
-JSONObject pos2;
-
-float sat1Lon;
-float sat1Lat;
-
-float sat2Lon;
-float sat2Lat;
-
 Satellite sat;
 
-
-
 void setup() {
-  get_info();
   size(600, 600, P3D);
   earth = loadImage("earth.jpg");
   // table = loadTable("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_day.csv", "header");
@@ -42,7 +26,7 @@ void setup() {
   camera(0, 0, -500, 0, 0,0,0,1,0);
   directionalLight(180,180,180,-5,-2,-1);
   
-  sat = new Satellite(1,1,80,50);
+  sat = new Satellite("25544");
 
 }
 

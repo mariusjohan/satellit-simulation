@@ -1,5 +1,3 @@
-
-
 class Satellite {
   PVector rotationAxis;
   float currentAngle;
@@ -7,8 +5,22 @@ class Satellite {
   float size;
 
 
-  Satellite(float startLat, float endLat, float startLong, float endLong) {
-
+  Satellite(String id) {
+        
+    JSONObject j = loadJSONObject("https://api.n2yo.com/rest/v1/satellite/positions/" + id + "/41.702/-76.014/0/2/&apiKey=FZER95-DNELVS-4MWYDD-4SQ0");
+    JSONArray positionsJson = j.getJSONArray("positions");
+  
+    JSONObject Json_pos1 = positionsJson.getJSONObject(0);
+    JSONObject Json_pos2 = positionsJson.getJSONObject(1);
+    
+    float startLong = Json_pos1.getFloat("satlongitude");
+    float startLat = Json_pos1.getFloat("satlatitude");
+    
+    float endLong = Json_pos2.getFloat("satlongitude");
+    float endLat = Json_pos2.getFloat("satlatitude");
+    
+    // float startLat, float endLat, float startLong, float endLong
+    
     float theta1 = radians(startLat);
     float phi1 = radians(startLong) + PI;
 
