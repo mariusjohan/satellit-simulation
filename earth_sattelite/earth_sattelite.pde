@@ -1,53 +1,54 @@
-// 3D Earthquake Data Visualization
-// The Coding Train / Daniel Shiffman
-// https://thecodingtrain.com/CodingChallenges/058-earthquakeviz3d.html
-// https://youtu.be/dbs4IYGfAXc
-// https://editor.p5js.org/codingtrain/sketches/tttPKxZi
-
+import java.util.Date;
 float angle;
-
+long time; // !c
 Table table;
 float r = 200;
-
 PImage earth;
 PShape globe;
-
 ArrayList<Satellite> satellites = new ArrayList<Satellite>();
 
 void setup() {
-  size(600, 600, P3D);
+  size(1000, 1000, P3D);
+  textSize(100);
+
   earth = loadImage("earth.jpg");
-  // table = loadTable("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_day.csv", "header");
-  table = loadTable("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv", "header");
 
   noStroke();
   globe = createShape(SPHERE, r);
   globe.setTexture(earth);
-  camera(0, 0, -500, 0, 0,0,0,1,0);
-  directionalLight(180,180,180,-5,-2,-1);
-  
+  camera(0, 0, 3000, 0, 0, 0, 0, 1, 0);
+  directionalLight(180, 180, 180, -5, -2, -1);
+
   satellites.add(new Satellite("25544"));
   satellites.add(new Satellite("36516"));
   satellites.add(new Satellite("33591"));
   satellites.add(new Satellite("29155"));
   satellites.add(new Satellite("25338"));
+  time = satellites.get(0).startTime;
 }
 
 void draw() {
   clear();
-  //translate(width*0.5, height*0.5);
+  background(51);
+  time+=5;
 
-  //angle += 0.005;
+  fill(255);
+
+  Date date = new Date(time*1000);
+
+  text(date.toString(), (-3000/2)+10, (-3000/2)+10);
+
+
+  angle += 0.005;
   rotateY(angle);
 
-  background(51);
 
   fill(200);
   noStroke();
-  //sphere(r);
   shape(globe);
-  
+
   for (Satellite sat_i : satellites) {
     sat_i.update(); 
+    println(sat_i.name);
   }
 }
