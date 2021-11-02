@@ -1,1 +1,1 @@
-satellit-simulation
+satellite-simulation
