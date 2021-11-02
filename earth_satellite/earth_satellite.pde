@@ -28,12 +28,13 @@ void setup() {
   satellitesUI.add(new SatelliteUI(-1500, 500-1000, new Satellite("33591",color(0,255,255))));
   satellitesUI.add(new SatelliteUI(-1500, 700-1000, new Satellite("25338",color(0,255,0))));
   satellitesUI.add(new SatelliteUI(-1500, 900-1000, new Satellite("25994",color(0,0,255))));
-  satellitesUI.add(new SatelliteUI(-1500, 1100-1000, new Satellite("27424",color(0,255,0))));
-  satellitesUI.add(new SatelliteUI(-1500, 1300-1000, new Satellite("38771",color(0,255,0))));
-  satellitesUI.add(new SatelliteUI(-1500, 1500-1000, new Satellite("37849",color(0,255,0))));
+  satellitesUI.add(new SatelliteUI(-1500, 1100-1000, new Satellite("27424",color(255,255,255))));
+  //satellitesUI.add(new SatelliteUI(-1500, 1300-1000, new Satellite("38771",color(0,255,0))));
+  //satellitesUI.add(new SatelliteUI(-1500, 1500-1000, new Satellite("37849",color(0,255,0))));
   
   // get time of first satellite for setting timeline.
   time = satellitesUI.get(0).sat.startTime;
+
 }
 
 void draw() {
@@ -47,7 +48,11 @@ void draw() {
   time+=5;
   // Change date to UTC instead of unix
   Date date = new Date(time*1000);
+  textSize(100);
   text(date.toString(), (-3000/2)+10, (-3000/2)+10);
+  textSize(200);
+  text("Toggle Satellites", (-3000/2)-100, (-3000/2)+475);
+  textSize(100);
 
   //Create the globe
   fill(200);
