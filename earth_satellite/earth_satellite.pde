@@ -36,11 +36,13 @@ void setup() {
   time = satellitesUI.get(0).sat.startTime;
 }
 
+float angle__ = 0;
+float angle__2 = 0;
+
 void draw() {
   clear();
   background(51);
 
-  
   fill(255);
   
   // add 5 sec to time.
@@ -52,13 +54,21 @@ void draw() {
   //Create the globe
   fill(200);
   noStroke();
+  angle__ += 0.1;
+  angle__2 -= 0.1;
+  rotateY(angle__);
   shape(globe);
 
   //draw all satellites
+  int i = 0;
   for (SatelliteUI sat_i : satellitesUI) {
     //update satellites
     sat_i.sat.update(); 
     // render the satellites and UI elem.
+    if (i == 0){
+     rotateY(angle__2); 
+    }
+    i += 1;
     sat_i.render();
   }
 }
