@@ -5,6 +5,7 @@ Table table;
 float r = 500;
 PImage earth;
 PShape globe;
+Date startDate;
 ArrayList<SatelliteUI> satellitesUI = new ArrayList<SatelliteUI>();
 
 void setup() {
@@ -34,6 +35,7 @@ void setup() {
   
   // get time of first satellite for setting timeline.
   time = satellitesUI.get(0).sat.startTime;
+  startDate = new Date(time*1000);
 
 }
 
@@ -42,14 +44,15 @@ void draw() {
   background(51);
 
   
-  fill(255);
-  
+  fill(255);  
   // add 5 sec to time.
   time+=5;
   // Change date to UTC instead of unix
   Date date = new Date(time*1000);
   textSize(100);
   text(date.toString(), (-3000/2)+10, (-3000/2)+10);
+  text("Start of simulation: " + startDate.toString(), (-3000/2)+10, (-3000/2)+100);
+  text("Speed: 5 min pr sec",(-3000/2)+10, (-3000/2)+200);
   textSize(200);
   text("Toggle Satellites", (-3000/2)-100, (-3000/2)+475);
   textSize(100);
