@@ -23,14 +23,14 @@ void setup() {
   directionalLight(180, 180, 180, -5, -2, -1);
   
   // add satellites
-  satellitesUI.add(new SatelliteUI(-1500, 100-1000, new Satellite("25544")));
-  satellitesUI.add(new SatelliteUI(-1500, 300-1000, new Satellite("36516")));
-  satellitesUI.add(new SatelliteUI(-1500, 500-1000, new Satellite("33591")));
-  satellitesUI.add(new SatelliteUI(-1500, 700-1000, new Satellite("25338")));
-  satellitesUI.add(new SatelliteUI(-1500, 900-1000, new Satellite("25994")));
-  satellitesUI.add(new SatelliteUI(-1500, 1100-1000, new Satellite("27424")));
-  satellitesUI.add(new SatelliteUI(-1500, 1300-1000, new Satellite("38771")));
-  satellitesUI.add(new SatelliteUI(-1500, 1500-1000, new Satellite("37849")));
+  satellitesUI.add(new SatelliteUI(-1500, 100-1000, new Satellite("25544",color(255,255,0))));
+  satellitesUI.add(new SatelliteUI(-1500, 300-1000, new Satellite("36516",color(255,0,255))));
+  satellitesUI.add(new SatelliteUI(-1500, 500-1000, new Satellite("33591",color(0,255,255))));
+  satellitesUI.add(new SatelliteUI(-1500, 700-1000, new Satellite("25338",color(0,255,0))));
+  satellitesUI.add(new SatelliteUI(-1500, 900-1000, new Satellite("25994",color(0,0,255))));
+  satellitesUI.add(new SatelliteUI(-1500, 1100-1000, new Satellite("27424",color(0,255,0))));
+  satellitesUI.add(new SatelliteUI(-1500, 1300-1000, new Satellite("38771",color(0,255,0))));
+  satellitesUI.add(new SatelliteUI(-1500, 1500-1000, new Satellite("37849",color(0,255,0))));
   
   // get time of first satellite for setting timeline.
   time = satellitesUI.get(0).sat.startTime;

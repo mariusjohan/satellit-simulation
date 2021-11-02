@@ -10,8 +10,9 @@ class Satellite {
   PVector pos1; // first pos of sat from api
   PVector pos2; // second pos of sat from api
   int startTime; // first pos timestamp unix format
+  color satColor; // Color of the sat
 
-  Satellite(String id_) {
+  Satellite(String id_, color col) {
     id = int(id_);
     // load the API json object with the id as regex
     JSONObject j = loadJSONObject("https://api.n2yo.com/rest/v1/satellite/positions/" + id_ + "/41.702/-76.014/0/2/&apiKey=FZER95-DNELVS-4MWYDD-4SQ0");
@@ -53,10 +54,12 @@ class Satellite {
     float angle_ = PVector.angleBetween(pos1, pos2);
     // calc the speed. since time is always with 1 sec delta, we get. angle/1 = angle. We mult by 5 for 5 sec for faster animation.
     speed = angle_ * 5;
+    
+    satColor = col;
   }
 
   void update() {
-    fill(0, 255, 255);
+    fill(satColor);
 
     // update the angle with speed.
     currentAngle += speed;

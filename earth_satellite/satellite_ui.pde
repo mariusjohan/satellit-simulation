@@ -18,7 +18,7 @@ class SatelliteUI {
       isActive = !isActive;
     }
     if (isActive) {
-      fill(0, 255, 0);
+      fill(sat.satColor);
     } else {
       fill(255, 0, 0);
     }
