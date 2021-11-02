@@ -1,4 +1,5 @@
 import java.util.Date;
+
 float angle;
 long time; // !c
 Table table;
@@ -39,11 +40,12 @@ void setup() {
 
 }
 
+float angle__ = 0;
+
 void draw() {
   clear();
   background(51);
 
-  
   fill(255);  
   // add 5 sec to time.
   time+=5;
@@ -60,13 +62,29 @@ void draw() {
   //Create the globe
   fill(200);
   noStroke();
+ 
+  if (keyPressed) {
+    if (keyCode == RIGHT) {
+      angle__ += 0.01;
+    } else if (keyCode == LEFT) {
+      angle__ -= 0.01;
+    }
+  } 
+
+  rotateY(angle__);
   shape(globe);
+  rotateY(-angle__);
 
   //draw all satellites
+  int i = 0;
   for (SatelliteUI sat_i : satellitesUI) {
     //update satellites
-    sat_i.sat.update(); 
+    rotateY(angle__);
+    sat_i.sat.update();
+    rotateY(-angle__);
+     
     // render the satellites and UI elem.
+    i += 1;
     sat_i.render();
   }
 }
