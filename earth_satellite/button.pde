@@ -1,36 +1,21 @@
-class EnterButton {
-  PVector pos;
-  PVector size;
-  String sat_id;
-  int sat_counter;
+class SatHandler {
+  int sat_counter =1;
 
   ArrayList<String> error_messages = new ArrayList<String>();
 
-  EnterButton(PVector pos_, PVector size_) {
-    pos = pos_;
-    size = size_;
+  SatHandler() {
   }
-  void update() {
 
-    if (mousePressed == true) {
-
-      boolean mouse_press_x = pos.x < mouseX && mouseX < pos.x + size.x;
-      boolean mouse_press_y = pos.y < mouseY && mouseY < pos.y + size.y;
-      
-      if (mouse_press_y && mouse_press_x) {
-        try {
-          sat_id = cp5.get(Textfield.class, "sat_id").getText();
-        } 
-        catch (Exception e) {
-        }
-
-        error_messages = new ArrayList<String>();
-        SatelliteUI x = new SatelliteUI(-1500, (1100+sat_counter*100)-1000, new Satellite("25544", color(255, 255, 0)));
-        if (x.sat.name != "null") {
-          satellitesUI.add(x);
-          sat_counter++;
-        }
-      }
+  void new_sat(String sat_id) {
+    error_messages = new ArrayList<String>();
+    
+    try {
+      SatelliteUI x = new SatelliteUI(-1500, (1100+sat_counter*200)-1000, new Satellite(sat_id, color(int(random(0,255)), int(random(0,255)), int(random(0,255)))));
+      x.sat.startTime -= time;
+      satellitesUI.add(x);
+      sat_counter++;
+    } catch(Exception e) {
+      println("sat_id is not valid: ", sat_id);
     }
   }
 }

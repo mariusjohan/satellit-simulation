@@ -1,5 +1,5 @@
 class Satellite {
-  
+
   int id; // id of object
   PVector rotationAxis; // axis of rotion of object
   float currentAngle; // current angle of the sat.
@@ -22,7 +22,7 @@ class Satellite {
     //take out both pos arrays as objects
     JSONObject Json_pos1 = positionsJson.getJSONObject(0);
     JSONObject Json_pos2 = positionsJson.getJSONObject(1);
-    
+
     // get the different positions
     float startLong = Json_pos1.getFloat("satlongitude");
     float startLat = Json_pos1.getFloat("satlatitude");
@@ -31,9 +31,15 @@ class Satellite {
 
     // get meta info about sat. name, time.
     JSONObject infoJson = j.getJSONObject("info");
+
+
     name = infoJson.getString("satname");
+
+
+
+
     startTime = Json_pos1.getInt("timestamp");
-    
+
     // normalize radius
     r = (Json_pos1.getFloat("sataltitude") + 6371) / 6371 * 500;
 
@@ -46,7 +52,7 @@ class Satellite {
     // calc the two pos vectors.
     pos1 = new PVector(r * cos(theta1) * cos(phi1), -r * sin(theta1), -r * cos(theta1) * sin(phi1));
     pos2 = new PVector(r * cos(theta2) * cos(phi2), -r * sin(theta2), -r * cos(theta2) * sin(phi2));
-    
+
     // calc the rotation axis. The rotation axis is what the object will be spinning around.
     rotationAxis = pos1.cross(pos2);
 
@@ -54,7 +60,7 @@ class Satellite {
     float angle_ = PVector.angleBetween(pos1, pos2);
     // calc the speed. since time is always with 1 sec delta, we get. angle/1 = angle. We mult by 5 for 5 sec for faster animation.
     speed = angle_ * 5;
-    
+
     satColor = col;
   }
 
@@ -73,7 +79,7 @@ class Satellite {
       popMatrix();
     }
   }
-  
+
   // toggle if the sat is visible.
   void Toggle() {
     isActive = !isActive;
