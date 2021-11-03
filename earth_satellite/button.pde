@@ -11,7 +11,8 @@ class SatHandler {
     
     try {
       SatelliteUI x = new SatelliteUI(-1500, (1100+sat_counter*200)-1000, new Satellite(sat_id, color(int(random(0,255)), int(random(0,255)), int(random(0,255)))));
-      x.sat.startTime -= time;
+      float deltaFrames = (time-satellitesUI.get(0).sat.startTime)/5;
+      x.sat.currentAngle += deltaFrames*x.sat.speed;
       satellitesUI.add(x);
       sat_counter++;
     } catch(Exception e) {

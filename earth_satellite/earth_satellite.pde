@@ -9,6 +9,7 @@ PShape globe;
 Date startDate;
 String inptxt = "Write NORAD ID by pressing numbers";
 ArrayList<SatelliteUI> satellitesUI = new ArrayList<SatelliteUI>();
+float frames = 0;  
 
 SatHandler sathandler;
 
@@ -50,6 +51,7 @@ float angle__ = 0;
 void draw() {
   clear();
   background(51);
+  frames++;
 
   fill(255);  
   // add 5 sec to time.

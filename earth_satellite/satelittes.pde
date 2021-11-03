@@ -11,6 +11,7 @@ class Satellite {
   PVector pos2; // second pos of sat from api
   int startTime; // first pos timestamp unix format
   color satColor; // Color of the sat
+  float angle_;
 
   Satellite(String id_, color col) {
     id = int(id_);
@@ -32,11 +33,7 @@ class Satellite {
     // get meta info about sat. name, time.
     JSONObject infoJson = j.getJSONObject("info");
 
-
     name = infoJson.getString("satname");
-
-
-
 
     startTime = Json_pos1.getInt("timestamp");
 
@@ -57,7 +54,7 @@ class Satellite {
     rotationAxis = pos1.cross(pos2);
 
     // get the angle between the two pos.
-    float angle_ = PVector.angleBetween(pos1, pos2);
+    angle_ = PVector.angleBetween(pos1, pos2);
     // calc the speed. since time is always with 1 sec delta, we get. angle/1 = angle. We mult by 5 for 5 sec for faster animation.
     speed = angle_ * 5;
 
